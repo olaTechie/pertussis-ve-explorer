@@ -60,9 +60,9 @@ export interface WaningPoint {
   series: string;           // 'TND', 'FMD', 'PCR', etc.
   timeLabel: string;
   timeMidpoint_years: number;
-  ve: number;
-  ci_lower: number;
-  ci_upper: number;
+  ve: number | null;
+  ci_lower: number | null;
+  ci_upper: number | null;
 }
 
 export interface RoBDomain {
