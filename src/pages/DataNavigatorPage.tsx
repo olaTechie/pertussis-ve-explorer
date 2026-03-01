@@ -25,7 +25,7 @@ export default function DataNavigatorPage() {
     <div>
       <h2 className="text-2xl font-semibold text-[#1E293B] mb-1">Data Explorer</h2>
       <p className="text-sm text-[#64748B] mb-4">
-        Browse extracted data across all 6 studies &mdash; mirrors the v3 Excel workbook.
+        Browse extracted data across all 6 studies &mdash; mirrors the corrected Excel workbook.
       </p>
 
       <Tabs value={section} onValueChange={v => navigate(`/data/${v}`)}>
@@ -265,11 +265,11 @@ function RoBSection() {
 function NotesSection() {
   const notes = [
     { studyId: 'Ward2005', note: 'Vaccine is aP-only not Tdap; VE CIs very wide (n=10 cases); trial registration not provided.' },
-    { studyId: 'Baxter2013', note: 'Two control groups: PCR-negative (primary) and KPNC population. ~50% adolescents. Waning data from supplementary table.' },
-    { studyId: 'Bell2019', note: 'wP recipients excluded (aP-only population). Stratum-specific Ns not reported. VE at \u22658 yr not significant.' },
-    { studyId: 'Liu2020', note: 'PCR VE (52%) preferred over prespecified primary (8%). Serology VE biased by Tdap-induced antibody. Population \u226545 yr, wP-primed.' },
-    { studyId: 'Witt2013', note: 'No traditional VE (no unvaccinated group). RR aP vs wP only. Severe confounding by birth cohort. Narrative synthesis only.' },
-    { studyId: 'Crowcroft2021', note: 'TND and FMD designs compared. TND preferred for synthesis. VE diverges at \u22658 yr (TND 41% vs FMD 74%). Children 0\u201322 yr only.' },
+    { studyId: 'Baxter2013', note: 'Two control groups: PCR-negative (primary) and KPNC population. ~50% adolescents. Waning estimates removed (not in corrected extraction).' },
+    { studyId: 'Bell2019', note: 'wP recipients excluded (aP-only population). Adult >21 yr subgroup has wide CIs (sparse data). Full cohort VE at \u22658 yr = 37.1% (significant).' },
+    { studyId: 'Liu2020', note: 'PCR VE (52%) used for synthesis. Serology and all-notifications estimates removed. Population \u226545 yr, wP-primed. Rematched sensitivity analysis included.' },
+    { studyId: 'Witt2013', note: 'No VE vs unvaccinated (reports RR aP vs wP only). Critical RoB due to structural age/birth-year confounding. Narrative synthesis only.' },
+    { studyId: 'Crowcroft2021', note: 'TND and FMD designs compared. FMD preferred for synthesis. VE diverges at \u22658 yr (TND 41% vs FMD 74%). Children 0\u201322 yr only.' },
   ];
   return (
     <DataTable

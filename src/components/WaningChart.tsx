@@ -3,11 +3,12 @@ import * as d3 from 'd3';
 import type { WaningPoint } from '../types';
 
 const SERIES_COLORS: Record<string, string> = {
-  'Baxter2013-PCR controls': '#1F4E79',
-  'Bell2019-Complete vacc': '#2E75B6',
-  'Liu2020-PCR only': '#7FB3E0',
-  'Crowcroft2021-TND': '#3B7DD8',
-  'Crowcroft2021-FMD': '#94a3b8',
+  'Bell2019-Full cohort': '#2E75B6',
+  'Bell2019-Adult >21yr': '#7FB3E0',
+  'Liu2020-PCR main': '#1F4E79',
+  'Liu2020-PCR rematched': '#94a3b8',
+  'Crowcroft2021-FMD': '#3B7DD8',
+  'Crowcroft2021-TND': '#A0AEC0',
 };
 
 interface WaningChartProps {
@@ -109,7 +110,7 @@ export default function WaningChart({ data, height = 300 }: WaningChartProps) {
       // Legend entry
       const lastPt = sorted[sorted.length - 1];
       const [studyId, series] = key.split('-');
-      const study = { Baxter2013: 'Baxter', Bell2019: 'Bell', Liu2020: 'Liu', Crowcroft2021: 'Crowcroft' }[studyId] ?? studyId;
+      const study = { Bell2019: 'Bell', Liu2020: 'Liu', Crowcroft2021: 'Crowcroft' }[studyId] ?? studyId;
 
       svg.append('text')
         .attr('x', width - margin.right + 8)

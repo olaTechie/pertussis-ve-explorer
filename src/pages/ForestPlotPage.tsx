@@ -7,28 +7,19 @@ export default function ForestPlotPage() {
   const navigate = useNavigate();
   const [selectedStudies, setSelectedStudies] = useState<string[]>(STUDIES.map(s => s.id));
   const [subgroupFilter, setSubgroupFilter] = useState<'all' | 'overall' | 'time' | 'age'>('all');
-  const [pcrOnly, setPcrOnly] = useState(false);
 
   const filteredEstimates = useMemo(() => {
     return VE_ESTIMATES.filter(est => {
       if (!selectedStudies.includes(est.studyId)) return false;
       if (est.ve === null) return false;
-      if (est.isSensitivity && est.subgroupType !== 'pcr') return false;
+      if (est.isSensitivity) return false;
 
-      if (pcrOnly) {
-        if (est.studyId === 'Liu2020') {
-          return est.id === 'L20-02';
-        }
-      } else {
-        if (est.studyId === 'Liu2020' && est.id === 'L20-02') return false;
-      }
-
-      if (subgroupFilter === 'overall') return est.subgroupType === 'overall' || est.subgroupType === 'pcr';
+      if (subgroupFilter === 'overall') return est.subgroupType === 'overall';
       if (subgroupFilter === 'time') return est.subgroupType === 'time';
       if (subgroupFilter === 'age') return est.subgroupType === 'age';
       return true;
     });
-  }, [selectedStudies, subgroupFilter, pcrOnly]);
+  }, [selectedStudies, subgroupFilter]);
 
   const toggleStudy = (id: string) => {
     setSelectedStudies(prev =>
@@ -84,17 +75,6 @@ export default function ForestPlotPage() {
           </div>
         </div>
 
-        <div className="flex items-end">
-          <label className="flex items-center gap-2 text-xs">
-            <input
-              type="checkbox"
-              checked={pcrOnly}
-              onChange={e => setPcrOnly(e.target.checked)}
-              className="rounded border-gray-300"
-            />
-            <span className="text-[#64748B]">PCR-only (Liu 2020)</span>
-          </label>
-        </div>
       </div>
 
       {/* Plot */}
