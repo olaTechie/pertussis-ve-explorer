@@ -51,7 +51,7 @@ export default function StudyCard({ study }: StudyCardProps) {
               <p className="text-lg font-semibold text-navy">
                 VE {study.primaryVE}%
                 <span className="text-sm font-normal text-[#64748B] ml-1">
-                  ({study.primaryVE_CI_lower}\u2013{study.primaryVE_CI_upper}%)
+                  ({study.primaryVE_CI_lower}&ndash;{study.primaryVE_CI_upper}%)
                 </span>
               </p>
             ) : (

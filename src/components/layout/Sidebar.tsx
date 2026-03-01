@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronRight, BarChart3, Table2, BookOpen, X } from 'lucide-react';
 import { useState } from 'react';
 import { STUDIES } from '../../data/studies';
@@ -58,7 +58,7 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
         }`}
       >
         <div className="flex items-center justify-between px-4 h-14 border-b border-white/10">
-          <span className="font-semibold text-sm">VE Explorer</span>
+          <Link to="/studies" className="font-semibold text-sm hover:text-white/80 transition-colors">VE Explorer</Link>
           <button className="md:hidden p-1 hover:bg-navy-mid rounded" onClick={onClose}>
             <X size={16} />
           </button>
